@@ -1,0 +1,16 @@
+package com.example.ApiGateWay.model;
+
+import lombok.*;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
+public class User {
+    private int id;
+
+    private String name;
+    private int age;
+    private int id_department;
+}
