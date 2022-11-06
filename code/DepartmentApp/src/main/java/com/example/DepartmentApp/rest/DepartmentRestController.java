@@ -18,7 +18,7 @@ public class DepartmentRestController {
     @Autowired
     private DepartmentService departmentService;
 
-    @Value("${welcome}")
+//    @Value("${welcome}")
     private String welcome;
 
     @GetMapping("/hello")

@@ -2,12 +2,10 @@ package com.example.UserApp.rest;
 
 import com.example.UserApp.entity.User;
 import com.example.UserApp.service.UserService;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -16,7 +14,7 @@ public class UserRestController {
     @Autowired
     private UserService userService;
 
-    @Value("${welcome}")
+//    @Value("${welcome}")
     private String welcome;
 
     @GetMapping("/hello")
@@ -29,7 +27,15 @@ public class UserRestController {
         return userService.getAll();
     }
 
+    @GetMapping("/getAllDepartment")
+    @CircuitBreaker(name ="userService")
+    public List<Object> getAllDeparment() {
+        return userService.getAllDeparment();
+    }
 
+//    public String informFall(Exception e) {
+//        return "Fail to get departments";
+//    }
 
     @PostMapping("/users")
     public User save(@RequestBody User user) {
