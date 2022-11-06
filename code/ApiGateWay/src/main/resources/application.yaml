@@ -2,7 +2,7 @@ server:
   port: 9001
 spring:
   application:
-    name: api-gateway
+    name: config-server
   cloud:
     gateway:
       routes:
@@ -14,3 +14,9 @@ spring:
           uri: http://localhost:8002/
           predicates:
             - Path=/departments/**
+    config:
+      server:
+        git:
+          uri: https://github.com/NguyenVVLap/cloud-config-server-user-department
+          default-label: main
+        bootstrap: false
